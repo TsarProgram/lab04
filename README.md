@@ -12,17 +12,17 @@
 $ git clone https://github.com/tp-labs/lab03 test/ //копируем исходники в локальный репозиторий
 $ cd test/formatter_lib //переходи в папку formatter_lib
 $ cat >> CMakeLists.txt <<EOF //создаем CMakeLists.txt
->cmake_minimum_required(VERSION 3.4)
->project(formatter)
->set(CMAKE_CXX_STANDARD 11)
+>cmake_minimum_required(VERSION 3.4) //проверка версии CMake
+>project(formatter) //создаем проект formatter
+>set(CMAKE_CXX_STANDARD 11) //установка стандарта языка
 >set(CMAKE_CXX_STANDARD_REQUIRED ON)
->add_library(formatter STATIC \${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp) 
->include_directories(\${CMAKE_CURRENT_SOURCE_DIR})
+>add_library(formatter STATIC \${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp) //компилируем библиотеку formatter
+>include_directories(\${CMAKE_CURRENT_SOURCE_DIR}) //подключаем заголовочные файлы
 >EOF
-$ cmake -H. -B_build
-$ cmake --build _build
-$ ls _build/libformatter.a
-Вывод: _build/libformatter.a
+$ cmake -H. -B_build  //создаем директорию для сборки
+$ cmake --build _build //собираем проект
+$ ls _build/libformatter.a //проверка библиотеки formatter на наличие
+Вывод: _build/libformatter.a //прошла успешно
 ```
 
 ### Задание 2
@@ -32,59 +32,61 @@ $ ls _build/libformatter.a
 руководитель поручает заняться созданием `CMakeList.txt` для библиотеки 
 *formatter_ex*, которая в свою очередь использует библиотеку *formatter*.
 ```sh
-$ cd ..
-cd formatter_ex_lib/
-$ cat >> CMakeLists.txt <<EOF
->cmake_minimum_required(VERSION 3.4)
->project(formatter_ex)
->set(CMAKE_CXX_STANDARD 11)
+$ cd .. //выходим из formatter_lib
+cd formatter_ex_lib/ //переходи в папку formatter_ex_lib
+$ cat >> CMakeLists.txt <<EOF //создаем CMakeLists.txt
+>cmake_minimum_required(VERSION 3.4) //проверка версии CMake
+>project(formatter_ex) //создаем проект formatter_ex
+>set(CMAKE_CXX_STANDARD 11) //установка стандарта языка
 >set(CMAKE_CXX_STANDARD_REQUIRED ON)
->set(CMAKE_CURRENT_SOURCE_DIR /home/vitaliy/test)
->add_library(formatter_ex STATIC \${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib/formatter_ex.cpp) 
->include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib)
+>set(CMAKE_CURRENT_SOURCE_DIR /home/vitaliy/test) //изменяем переменную CMAKE_CURRENT_SOURCE_DIR
+>add_library(formatter_ex STATIC \${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib/formatter_ex.cpp) //компилируем библиотеку formatter_ex
+>include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib) //подключаем заголовочные файлы
 >include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib)
->target_link_libraries(formatter_ex formatter)
+>target_link_libraries(formatter_ex formatter) //связываем библиотеки
 >EOF
-$ cmake -H. -B_build
-$ cmake --build _build
-Вывод: _build/libformatter_ex.a
+$ cmake -H. -B_build //создаем директорию для сборки
+$ cmake --build _build //собираем проект
+$ ls _build/libformatter_ex.a //проверка библиотеки formatter_ex на наличие
+Вывод: _build/libformatter_ex.a //прошла успешно
 ```
 
 ### Задание 3
-Конечно же ваша компания предоставляет примеры использования своих библиотек.
+3. [x]  Конечно же ваша компания предоставляет примеры использования своих библиотек.
 Чтобы продемонстрировать как работать с библиотекой *formatter_ex*,
 вам необходимо создать два `CMakeList.txt` для двух простых приложений:
-3. [x]  *hello_world*, которое использует библиотеку *formatter_ex*;
+
+*hello_world*, которое использует библиотеку *formatter_ex*;
 ```sh
-$ cd ..
-$ cd hello_world_application/
-$ cat >> CMakeLists.txt <<EOF
->cmake_minimum_required(VERSION 3.4)
->project(hello_world)
->set(CMAKE_CXX_STANDARD 11)
+$ cd .. //выходим из formatter_ex_lib
+$ cd hello_world_application/ //переходи в папку hello_world_application
+$ cat >> CMakeLists.txt <<EOF //создаем CMakeLists.txt
+>cmake_minimum_required(VERSION 3.4) //проверка версии CMake
+>project(hello_world) //создаем проект hello_world
+>set(CMAKE_CXX_STANDARD 11) //установка стандарта языка
 >set(CMAKE_CXX_STANDARD_REQUIRED ON)
->set(CMAKE_CURRENT_SOURCE_DIR /home/vitaliy/test)
->add_executable(hello_world \${CMAKE_CURRENT_SOURCE_DIR}/hello_world_application/hello_world.cpp) 
->include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib)
+>set(CMAKE_CURRENT_SOURCE_DIR /home/vitaliy/test) //изменяем переменную CMAKE_CURRENT_SOURCE_DIR
+>add_executable(hello_world \${CMAKE_CURRENT_SOURCE_DIR}/hello_world_application/hello_world.cpp) //подключаем cpp
+>include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib) //подключаем заголовочные файлы
 >include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib)
->find_library(formatter_ex NAMES libformatter_ex.a PATHS \${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib)
->find_library(formatter NAMES libformatter.a PATHS \${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib)
->target_link_libraries(hello_world \${formatter_ex} \${formatter})
+>find_library(formatter_ex NAMES libformatter_ex.a PATHS \${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib) //поиск библиотек formatter_ex
+>find_library(formatter NAMES libformatter.a PATHS \${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib) //и formatter
+>target_link_libraries(hello_world \${formatter_ex} \${formatter}) //связываем библиотеки
 >EOF
-$ cmake -H. -B_build
-$ cmake --build _build
-$ _build/hello_world && echo
+$ cmake -H. -B_build //создаем директорию для сборки
+$ cmake --build _build //собираем проект
+$ _build/hello_world && echo //проверка
 Вывод:
 -------------------------
 hello, world!
 -------------------------
 
 ```
-4. [x]  *solver*, приложение которое испольует статические библиотеки *formatter_ex* и *solver_lib*.
+*solver*, приложение которое испольует статические библиотеки *formatter_ex* и *solver_lib*.
 ```sh
-$ cd ..
-$ cd solver_lib/
-$ cat >> CMakeLists.txt <<EOF
+$ cd .. //выходим из hello_world_application
+$ cd solver_lib/ //заходим в solver_lib/
+$ cat >> CMakeLists.txt <<EOF  //см. задание 1
 >cmake_minimum_required(VERSION 3.4)
 >project(solver_lib)
 >set(CMAKE_CXX_STANDARD 11)
@@ -101,9 +103,9 @@ $ cmake --build _build
 $ ls _build/libsolver_lib.a
 Вывод: _build/libsolver_lib.a
 
-$ cd ..
-$ cd solver_application/
-$ cat >> CMakeLists.txt <<EOF
+$ cd ..  //выходим из solver_lib/
+$ cd solver_application/ //заходим в solver_application
+$ cat >> CMakeLists.txt <<EOF //см. задание 2
 >cmake_minimum_required(VERSION 3.4)
 >project(solver)
 >set(CMAKE_CXX_STANDARD 11)
@@ -128,5 +130,5 @@ $ _build/hello_world && echo
 -------------------------
 error: discriminant < 0
 ------------------------- 
-**Удачной стажировки!**
-**Спасибо))**
+*Удачной стажировки!*
+*Спасибо))*
