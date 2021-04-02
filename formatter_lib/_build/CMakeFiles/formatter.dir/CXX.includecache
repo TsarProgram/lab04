@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vitaliy/test/formatter_lib/formatter.cpp
+formatter.h
+/home/vitaliy/test/formatter_lib/formatter.h
+
+/home/vitaliy/test/formatter_lib/formatter.h
+string
+-
+

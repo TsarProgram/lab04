@@ -1,0 +1,3 @@
+/home/vitaliy/test/solver_application/_build/CMakeFiles/rebuild_cache.dir
+/home/vitaliy/test/solver_application/_build/CMakeFiles/solver.dir
+/home/vitaliy/test/solver_application/_build/CMakeFiles/edit_cache.dir
