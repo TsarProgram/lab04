@@ -1,0 +1,19 @@
+language: cpp
+compiler:
+- gcc
+- clang
+script:
+- cd solver_application
+- cmake -H. -B_build
+- cmake --build _build
+- cd ..
+- cd hello_world_application
+- cmake -H. -B_build
+- cmake --build _build
+addons:
+apt:
+sources:
+- george-edison55-precise-backports
+packages:
+- cmake
+- cmake-data
