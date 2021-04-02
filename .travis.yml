@@ -1,24 +1,15 @@
 language: cpp
-jobs:
-include:
--os: linux
-name: Linux with GCC (all)
-arch:amd64
 compiler: 
 - gcc
 - clang
-env:
-- BUILD_OS=linux
-- BUILD_MOD=all
-- BUILD_JOBS=2
 script:
 - cd solver_application
-- cmake -H. -B_build
-- cmake --build _build
+- cmake .
+- cmake --build
 - cd ..
 - cd hello_world_application
-- cmake -H. -B_build
-- cmake --build _build
+- cmake .
+- cmake --build 
 addons:
 apt:
 sources:
