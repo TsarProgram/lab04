@@ -4,8 +4,9 @@ compiler:
 - clang
 script:
 - cd solver_application
-- cmake .
-- cmake --build
+- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build _build
+- cmake --build _build --target install
 - cd ..
 - cd hello_world_application
 - cmake .
