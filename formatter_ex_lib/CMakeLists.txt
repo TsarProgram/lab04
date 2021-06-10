@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.4)
-project(formatter_ex)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CURRENT_SOURCE_DIR /home/vitaliy/test)
-add_library(formatter_ex STATIC ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib/formatter_ex.cpp)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib)
+cmake_minimum_required(VERSION 2.8)
+
+add_definitions(-std=c++11)
+
+project(my_formatter_ex)
+include_directories(formatter_lib)
+add_subdirectory(formatter_lib)
+add_library(formatter_ex STATIC formatter_ex.h formatter_ex.cpp)
 target_link_libraries(formatter_ex formatter)
