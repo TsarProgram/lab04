@@ -4,17 +4,16 @@ compiler:
 - clang
 script:
 - cd solver_application
-- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-- cmake --build _build
-- cmake --build _build --target install
+- cmake .
+- make
 - cd ..
 - cd hello_world_application
 - cmake .
-- cmake --build 
+- make
 addons:
-apt:
-sources:
-- george-edison55-precise-backports
-packages:
-- cmake
-- cmake-data
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
