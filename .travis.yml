@@ -1,25 +1,14 @@
 language: cpp
-compiler: 
-- gcc
-- clang
+
 script:
-cmake formatter_lib/CMakeLists.txt -Bformatter_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
-cmake --build formatter_lib/_build
-cmake formatter_ex_lib/CMakeLists.txt -Bformatter_ex_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
-cmake --build formatter_ex_lib/_build
-cmake hello_world_application/CMakeLists.txt -Bhello_world_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
-cmake --build hello_world_application/_build
-cmake solver_application/CMakeLists.txt -Bsolver_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
-cmake --build solver_application/_build
-jobs:
-  include:
-  - name: "all projects"
-    script:
-    - cmake -H. -B_build
-    - cmake --build _build
-  - name: "each CMakeLists.txt"
-    script:
-    - source ./script
+- cd solver_application
+- cmake .
+- make
+- cd ..
+- cd hello_world_application
+- cmake .
+- make
+
 addons:
   apt:
     sources:
@@ -27,3 +16,4 @@ addons:
     packages:
       - cmake
       - cmake-data
+      - mingw-w64
