@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.org/justddreamm/lab04.svg?branch=ma..)](https://travis-ci.org/justddreamm/lab04)
 ## Лабораторная работа #4
 
 ## Выполнение:
