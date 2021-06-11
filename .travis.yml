@@ -3,13 +3,13 @@ compiler:
 - gcc
 - clang
 script:
-cmake formatter_lib/CMakeLists.txt -Bformatter_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake formatter_lib/CMakeLists.txt -Bformatter_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
 cmake --build formatter_lib/_build
-cmake formatter_ex_lib/CMakeLists.txt -Bformatter_ex_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake formatter_ex_lib/CMakeLists.txt -Bformatter_ex_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
 cmake --build formatter_ex_lib/_build
-cmake hello_world_application/CMakeLists.txt -Bhello_world_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake hello_world_application/CMakeLists.txt -Bhello_world_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
 cmake --build hello_world_application/_build
-cmake solver_application/CMakeLists.txt -Bsolver_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake solver_application/CMakeLists.txt -Bsolver_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4/lab03
 cmake --build solver_application/_build
 jobs:
   include:
