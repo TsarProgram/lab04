@@ -11,6 +11,15 @@ cmake hello_world_application/CMakeLists.txt -Bhello_world_application/_build -D
 cmake --build hello_world_application/_build
 cmake solver_application/CMakeLists.txt -Bsolver_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
 cmake --build solver_application/_build
+jobs:
+  include:
+  - name: "all projects"
+    script:
+    - cmake -H. -B_build
+    - cmake --build _build
+  - name: "each CMakeLists.txt"
+    script:
+    - source ./script
 addons:
   apt:
     sources:
