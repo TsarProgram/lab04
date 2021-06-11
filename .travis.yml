@@ -3,13 +3,14 @@ compiler:
 - gcc
 - clang
 script:
-- cd solver_application
-- cmake .
-- make
-- cd ..
-- cd hello_world_application
-- cmake .
-- make
+cmake formatter_lib/CMakeLists.txt -Bformatter_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake --build formatter_lib/_build
+cmake formatter_ex_lib/CMakeLists.txt -Bformatter_ex_lib/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake --build formatter_ex_lib/_build
+cmake hello_world_application/CMakeLists.txt -Bhello_world_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake --build hello_world_application/_build
+cmake solver_application/CMakeLists.txt -Bsolver_application/_build -DCMAKE_CURRENT_SOURCE_DIR=/home/vitaliy/LABS_4-8/4/4.4
+cmake --build solver_application/_build
 addons:
   apt:
     sources:
